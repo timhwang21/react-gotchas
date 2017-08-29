@@ -10,7 +10,7 @@ On the other hand, people often build "wrapper components" for reusable form con
 
 Functional components are nice. They are generally more elegant and concise, and have a very pleasant syntax.
 
-They are also not pure. If your component's performance can be greatly improved by a simple `shouldComponentUpdate` or with `PureComponent`, don't use functional components.
+They are also unoptimized. If your component's performance can be greatly improved by a simple `shouldComponentUpdate` or with `PureComponent`, don't use functional components.
 
 They also do not have constructors. The following pattern occurs several times in our codebase:
 
