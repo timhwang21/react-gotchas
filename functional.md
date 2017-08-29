@@ -6,7 +6,7 @@ In general, pure functions are easier to test, easier to reason about, and tend 
 
 In addition, both React and Redux espouse functional principles. When working with a library, adopting conflicting paradigms is generally asking for trouble.
 
-This means `concat()` over `push()`, `map()` and `reduce()` over for-loops, etc.
+This means `concat()` over `push()`, `map()` and `reduce()` over for-loops, spread over `Object.assign`, etc.
 
 ## ...but not always
 

@@ -22,6 +22,8 @@ doSomething() {
 }
 ```
 
+The statement in which props are destructured, when placed at the start of the method, basically acts as a second function signature.
+
 React component props are basically instance variables, and instance variables that are used in a class method are basically arguments to that method. The purpose of a function signature is to give a quick overview of a function's dependencies. By destructuring props at the start of a method, the glance value of the method is dramatically increased -- it becomes immediately clear which props are used in the course of the function. This is extremely beneficial in refactoring.
 
 Also, more of a personal opinion, but I think the latter reads much clearer.
