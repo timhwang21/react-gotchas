@@ -14,7 +14,7 @@ They are also not pure. If your component's performance can be greatly improved 
 
 They also do not have constructors. The following pattern occurs several times in our codebase:
 
-```javascript
+```jsx
 const SomeComponent = props => {
   const handleClick = () => { props.onClick; }
 

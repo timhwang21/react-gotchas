@@ -2,7 +2,7 @@
 
 ## Avoid declaring functions as props in `render()`
 
-```javascript
+```jsx
 return (
   <Foo onClick={() => { /* do something */ }}
 );
@@ -18,7 +18,7 @@ Besides in event handlers, a very common place this occurs is in refs. Most onli
 
 ## Avoiding arrow functions in `render()` when mapping
 
-```javascript
+```jsx
 renderCheckboxes() {
   const { options } = this.props;
 
@@ -30,7 +30,7 @@ renderCheckboxes() {
 
 Compared to the above example, this may seem harder to deal with. This can be resolved by declaring a helper component class, passing the event handler as a props, and defining a class method on the helper:
 
-```javascript
+```jsx
 renderCheckboxes() {
   const { options } = this.props;
 

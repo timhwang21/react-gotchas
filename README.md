@@ -3,7 +3,7 @@
 ### Components
 * [Components](./components.md)
 * [Class methods](./classMethods.md)
-* [`componentWillReceiveProps()`](./componentwillReceiveProps.md)
+* [`componentWillReceiveProps()`](./componentWillReceiveProps.md)
 * [`render()`](./render.md)
 * [Higher-order components (HOCs)](./hoc.md)
 
