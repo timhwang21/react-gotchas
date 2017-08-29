@@ -22,6 +22,7 @@ This is meant to be a way to collaboratively share React learnings. File a PR!
 ### Libraries
 * [Reselect](./reselect.md)
 * [Redux Form](./reduxForm.md)
+* [Redux Thunk](./reduxThunk.md)
 
 ### Other
 * [Functional style](./functional.md)
