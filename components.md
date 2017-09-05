@@ -30,6 +30,13 @@ Here, `handleClick()` is a function masquerading as a class method. However, it 
 
 **Note**: The React team has been pretty vocal about their intention to optimize for functional components. So somewhere down the line, functional components may be much more performant. If you ever examine the transpiled code that Babel outputs, currently functional components end up calling `React.CreateClass` under the hood anyways.
 
+## `Component` or `PureComponent`?
+
+The tradeoff:
+
+* `Component` renders FASTER when props change often, and SLOWER when props do not change often.
+* `PureComponent` renders SLOWER when props change often (because of the added shallow equal checks), and FASTER when props do not change often (because renders are saved).
+
 ## Add `displayName` to functional components
 
 Functional components do not have a display name by default. This hurts debugging, because:
