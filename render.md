@@ -4,7 +4,7 @@
 
 ```jsx
 return (
-  <Foo onClick={() => { /* do something */ }}
+  <Foo onClick={() => { /* do something */ }}/>
 );
 ```
 
@@ -15,6 +15,23 @@ It is sometimes recommended to use arrow functions instead of class methods in c
 Besides in event handlers, a very common place this occurs is in refs. Most online examples demonstrate callback refs as follows: `ref={node => this.node = node}` This carries the same performance penalty.
 
 **Note**: In general, consider how many children a component will have in the DOM tree. The closer to being a leaf a component is, and the less expensive rendering is, the less important it is to optimize this rerender.
+
+## Avoid 'naked' arrays and objects as props in `render()`
+
+```jsx
+return (
+  <Foo foo={[]} bar={{}}/>
+);
+
+// in Foo componentWillReceiveProps()
+this.props.foo === nextProps.foo // false
+this.props.bar === nextProps.bar // false
+```
+
+New identities will be recognized as prop updates. Common cases where these arise:
+
+* Redux form inline validation function arrays
+* Inline styles
 
 ## Avoiding arrow functions in `render()` when mapping
 
