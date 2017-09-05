@@ -32,6 +32,7 @@ New identities will be recognized as prop updates. Common cases where these aris
 
 * Redux form inline validation function arrays
 * Inline styles
+* "Namespaced" props (e.g. `footerProps`)
 
 ## Avoiding arrow functions in `render()` when mapping
 
