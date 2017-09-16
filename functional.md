@@ -28,7 +28,7 @@ const things = ['foo', 'bar', 'baz'];
 const loudThings = things.reduce((acc, el) => { acc[el] = el.toUpperCase(); return acc; }, {});
 ```
 
-Linear time. Mutating here is fine because `acc` is created only when the function is evaluated. In general, objects that are allocated within a function are free to be mutated. This includes the accumulator in `reduce()` (second argument).
+Linear time. Mutating here is fine because `acc` is created only when the function is evaluated. In general, objects that are allocated within a function are free to be mutated. This includes the accumulator in `reduce()` (second argument). Specifically, *observable* mutations should be avoided, while *nonobservable* mutations (mutations to objects internal to a function) are fine (though should still be avoided unless they result in a nontrivial performance gain).
 
 ## Avoid side effects in functions generally viewed as pure
 
