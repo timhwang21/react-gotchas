@@ -37,3 +37,17 @@ Glance value of functions are important to allow quick grokking of code. Try to 
 `handleFoo()` - class method to be passed to child as event handler
 `props.onFoo()` - prop that expects to receive an event handler
 `fetchFoo()` - thunks that handle network requests
+
+## Use getters
+
+`this.getName()` and `this.name` may seem roughly equal in terms of brevity, but the latter makes it explicitly clear that the function cannot take arguments. This improves glance value, and reduces the mental workload people have to do when reading code.
+
+```javascript
+getName() { /* return a string */ }
+
+get name() { /* return a string */ }
+```
+
+## Don't abuse getters
+
+It is easy to misread getters as class properties. Getter functions should not be expensive, as this can be a hard-to-trace source of bad performance. Alternatively, cache them with something like `lodash`.
