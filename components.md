@@ -39,10 +39,12 @@ The tradeoff:
 
 ## Add `displayName` to functional components
 
-Functional components do not have a display name by default. This hurts debugging, because:
+If declared using fat arrow syntax, functional components do not have a display name by default. This hurts debugging, because:
 
 1. In the React devtools, the functional component is not searchable by name
 2. React perf tools get confused, and lump all render time of functional components together, leading to misleading results
+
+This can be avoided by using `function()` syntax, but that can be more verbose. The trade-off is up to the developer.
 
 ## Avoid using decorator syntax (`@`)
 
