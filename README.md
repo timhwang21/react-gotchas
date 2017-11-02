@@ -1,10 +1,12 @@
 # React Gotchas
 
+This repository is meant to be a way to collaboratively track **gotchas** -- easy-to-miss mistakes that can cause large headaches down the road. File a PR!
+
 ## Caveat
 
-As of now, most of the material here is my opinion. The content is a mix of blocking concerns that would get you a -2, my opinion of best practices, and things that are simply my preference.
+While the tips here are meant to be general-purpose, several of the items listed are specific to RocketFuel's code base and are marked as such.
 
-This is meant to be a way to collaboratively share React learnings. File a PR!
+Much of the material is biased by my opinion as I am currently the only contributor. Any comments, concerns, or disagreements are very welcome in the Issues section.
 
 ## Contents
 
