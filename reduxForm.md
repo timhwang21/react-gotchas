@@ -30,3 +30,18 @@ render() {
 ```
 
 Every time `render()` is called, both rules are recreated as new functions, and the `rules` array is recreated as a new array object. This leads to a rerender. In a form with many fields, the performance impact can be very noticeable.
+
+## Be aware of blur semantics
+
+Blur is core to our validation display logic, so when writing components it's important to know how blurring fits into the Redux Form life cycle. Blur handlers (and other event handlers in general) provided by Redux Form are polymorphic -- the first argument is an "`eventOrValue`". This can lead to confusion for user actions that don't have associated events, per se.
+
+`onBlur()` tries to set field value when called, which is important to note if a component has an internal data processing step (such that the raw value is not what you want to use as `value`). Importantly, `onBlur()` does different things depending on what the first argument is:
+* `Event`: tries to access `event.target.value` and sets the field value to this
+* `undefined` (or no argument): does not try to set field value (but dispatches a blur action)
+* Anything else: directly uses the passed argument as the field value
+
+## `onChange()` vs. lifecycle for dependent fields
+
+It seems natural to pass a change handler to a `<Field/>` if you want another field's value to change when this field changes. However, the change handler will miss any change that was not caused by a change event. Examples include cascading changes (changing field 1 changes field 2, which changes field 3), or entirely external changes (results of a network request cause a field to change). Thus, it's safer to rely on React lifecycle methods to detect field values changing.
+
+Of course, in trivial cases it is both less verbose and more readable to use `onChange()`. Use your best judgment, keeping in mind the benefits of each, and the fact that mixing both semantics in the same form is probably the most confusing approach.

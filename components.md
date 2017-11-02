@@ -1,5 +1,9 @@
 # Components
 
+## (RocketFuel) Use `_Base` and `PureBase`
+
+These helper classes automatically bind `this` to class methods.
+
 ## Respect modular components!
 
 If a component is built to be reusable and agnostic to where it is used, try to avoid shunting in logic to handle special cases. Keep reusable components as flexible as possible.
