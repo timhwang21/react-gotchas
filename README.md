@@ -13,12 +13,14 @@ Much of the material is biased by my opinion as I am currently the only contribu
 ### Components
 * [Components](./components.md)
 * [Class methods](./classMethods.md)
+* [Props](./props.md)
 * [`componentWillReceiveProps()`](./componentWillReceiveProps.md)
 * [`render()`](./render.md)
 * [Higher-order components (HOCs)](./hoc.md)
 
 ### Redux
 * [`mapStateToProps()`](./mapStateToProps.md)
+* [`mapDispatchToProps()`](./mapDispatchToProps.md)
 * [`mergeProps()`](./mergeProps.md)
 
 ### Libraries
