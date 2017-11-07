@@ -8,6 +8,7 @@ Consider the following:
 const getFooNames = state => Object.keys(state.foo);
 const getMappedBar = state => state.bar.map(x => x * 2);
 const getFilteredBaz = state => state.baz.filter(x => !!x);
+const nullCheckedQuux = state => state.quux || {};
 ```
 
 In all these cases, the input selector is returning a new object:
