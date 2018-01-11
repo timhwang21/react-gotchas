@@ -4,7 +4,21 @@
 
 It is handy for a form to be able to access all its values. However, if the entire form values are made accessible, every time any value changes, a prop change will register and the entire form will rerender.
 
-Sometimes it is unavoidable to access form values in a form. Consider using Redux Form's own selectors, such as the `formValueSelector()`.
+Sometimes it is unavoidable to access form values in a form. Consider using Redux Form's own selectors, such as the `formValueSelector()`. If using `formValueSelector()` with multiple fields, consider using a cached version of the selector as illustrated below to avoid creating new object references:
+
+```javascript
+const formValueReselector = formName => fields => {
+  const formSelector = formValueSelector(formName);
+  return createSelector(fields.map(field => state => formSelector(state, field)), (...values) =>
+    fields.reduce((acc, field, idx) => ({ ...acc, [field]: values[idx] }), {}),
+  );
+};
+
+const mapStateToProps = () => {
+  const mySelector = formValueReselector('myForm')(['field1', 'field2']);
+  return (state, props) => ({formValues: mySelector(state});
+};
+```
 
 ## Be aware of default values
 
