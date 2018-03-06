@@ -19,6 +19,7 @@ Much of the material is biased by my opinion as I am currently the only contribu
 * [Higher-order components (HOCs)](./hoc.md)
 
 ### Redux
+* [Actions](./actions.md)
 * [`mapStateToProps()`](./mapStateToProps.md)
 * [`mapDispatchToProps()`](./mapDispatchToProps.md)
 * [`mergeProps()`](./mergeProps.md)
