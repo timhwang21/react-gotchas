@@ -2,6 +2,8 @@
 
 ## Props should be connected in a pure way
 
+Be aware the `mapStateToProps()` is called on EVERY store change. This can lead to wasted rerenders when completely unrelated parts of the application update.
+
 Consider the following:
 
 ```javascript
@@ -11,6 +13,16 @@ const mapStateToProps = (state, props) => ({
 ```
 
 `filter()` creates a new array every time it is called. `connect()` is called whenever an action dispatch occurs. Thus, every single time the Redux store receives an action, the component connected via the above function will rerender due to a prop change.
+
+Similarly, this leads to the same problem:
+
+```javascript
+const mapStateToProps = (state, props) => ({
+  activeFoos: props.foos || [],
+});
+```
+
+The default `[]` value changes on each call to `mapStateToProps()` which leads to a detected prop change whenever the store is updated.
 
 ## NEVER pass state as a prop!
 
