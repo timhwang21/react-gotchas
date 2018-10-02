@@ -67,3 +67,20 @@ const getStuff = createSelector(
 ```
 
 The `getStuff()` selector takes `(state, props)` as arguments. But now there is the implicit requirement that `props.flightId`, `props.lineItemId`, and `props.tacticId` all exist in the component that uses `getStuff()` in `mapStateToProps()`. Combined with the fact that Reselect selectors themselves can be used to compose other selectors, the dependency chain gets messy real fast.
+
+## Returning functions
+
+Sometimes it might seem convenient to have a selector return a function, because the functionality required has many data dependencies. Then, the dependencies are passed to the function returned by the selector:
+
+```javascript
+const getStuff = createSelector(
+  [getFoo],
+  foo => props => doSomething(foo, props),
+);
+```
+
+This is an antipattern, because Reselect will only cache the creation of the function (`foo => someFn`). The returned function itself (`props => doSomething(foo, props)`) will not be cached. Because the returned function will ostensibly be used in `mapStateToProps`, this will have dire performance implications.
+
+See [`mapStateToProps()` Props should be connected in a pure way](https://github.com/timhwang21/react-gotchas/blob/master/mapStateToProps.md#props-should-be-connected-in-a-pure-way) for more information.
+
+Instead,the entirety of `props => doSomething(foo, props)` should be wrapped in a selector, along with all of its dependencies. **The entire point of Reselect is to cache function calls based on their arguments; if Reselect is not exposed to all the arguments, the caching will fail.** To avoid passing Reselect an unwieldy number of imput selectors, selector composition can be used.
