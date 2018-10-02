@@ -68,7 +68,7 @@ const getStuff = createSelector(
 
 The `getStuff()` selector takes `(state, props)` as arguments. But now there is the implicit requirement that `props.flightId`, `props.lineItemId`, and `props.tacticId` all exist in the component that uses `getStuff()` in `mapStateToProps()`. Combined with the fact that Reselect selectors themselves can be used to compose other selectors, the dependency chain gets messy real fast.
 
-## Returning functions
+## Do not return functions in selectors
 
 Sometimes it might seem convenient to have a selector return a function, because the functionality required has many data dependencies. Then, the dependencies are passed to the function returned by the selector:
 
