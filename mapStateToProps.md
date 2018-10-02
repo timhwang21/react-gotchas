@@ -2,6 +2,8 @@
 
 ## Props should be connected in a pure way
 
+**This is probably the single most important tip in this repository. From my experience, the vast majority of crippling performance problems can be traced back to an incorrect implementation of `mapStateToProps()`.**
+
 Be aware the `mapStateToProps()` is called on EVERY store change. This can lead to wasted rerenders when completely unrelated parts of the application update.
 
 Consider the following:
