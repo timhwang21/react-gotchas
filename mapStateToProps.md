@@ -9,12 +9,27 @@ Be aware the `mapStateToProps()` is called on EVERY store change. This can lead 
 Consider the following:
 
 ```javascript
-const mapStateToProps = (state, props) => ({
-  activeFoos: props.foos.filter(foo => foo.isActive),
+const mapStateToProps = state => ({
+  activeFoos: state.foos.filter(foo => foo.isActive),
 });
 ```
 
 `filter()` creates a new array every time it is called. `connect()` is called whenever an action dispatch occurs. Thus, every single time the Redux store receives an action, the component connected via the above function will rerender due to a prop change.
+
+**Fix**:
+
+```javascript
+import { createSelector } from 'reselect';
+
+const getActiveFoos = createSelector(
+  state => state.foos,
+  foos => foos.filter(foo => foo.isActive),
+);
+
+const mapStateToProps = state => ({
+  activeFoos: getActiveFoos(state),
+});
+```
 
 Similarly, this leads to the same problem:
 
@@ -25,6 +40,16 @@ const mapStateToProps = (state, props) => ({
 ```
 
 The default `[]` value changes on each call to `mapStateToProps()` which leads to a detected prop change whenever the store is updated.
+
+**Fix**:
+
+```javascript
+const EMPTY_FOOS = [];
+
+const mapStateToProps = (state, props) => ({
+  activefoos: props.foos || EMPTY_FOOS,
+});
+```
 
 ## NEVER pass state as a prop!
 

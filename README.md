@@ -15,7 +15,6 @@ Much of the material is biased by my opinion as I am currently the only contribu
 * [Class methods](./classMethods.md)
 * [Props](./props.md)
 * [`componentWillReceiveProps()`](./componentWillReceiveProps.md)
-* [`render()`](./render.md)
 * [Higher-order components (HOCs)](./hoc.md)
 
 ### Redux

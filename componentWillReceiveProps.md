@@ -1,16 +1,18 @@
 # `componentWillReceiveProps()`
 
-## Be wary of whether you need the current or next prop
+## Use `componentDidUpdate()` instead
 
-A common use case is using callbacks passed as props to react to prop changes. Keep in mind that these callbacks can also change: for example, they may use the parent's own props. Thus, if you are reacting to something in `nextProps`, you probably want to call `nextProps.callback()` instead of `this.props.callback()`. Even if the functions are identical, you almost always want `nextProps.callback()` just on the off chance that the function DID change.
-
-## Consider using `componentDidUpdate()`
+**Update**: React 16.3 onwards began the process of deprecating `componentWillReceiveProps()`. You almost certainly want to use `componentDidUpdate()` instead.
 
 If you have do something with props based on a prop update, it can be awkward to use `nextProps` passed by `componentWillReceiveProps()` if you want to call other class methods, which may access `this.props`. If you want to react on next props rather than current props, calling class methods will result in using "outdated" props.
 
 Using `componentDidUpdate()` means that class methods will have the correct props. The caveat is that extra renders may occur, because you are responding to the prop change after the render caused by the prop change completes. This should be weighed against the elegance of not having to make class methods accept `nextProps` as arguments.
 
 Finally, `componentDidUpdate()` prevents the common mistake described in the previous section, where `this.props.foo` is used for something where `nextProps.foo` was intended.
+
+## Be wary of whether you need the current or next prop
+
+A common use case is using callbacks passed as props to react to prop changes. Keep in mind that these callbacks can also change: for example, they may use the parent's own props. Thus, if you are reacting to something in `nextProps`, you probably want to call `nextProps.callback()` instead of `this.props.callback()`. Even if the functions are identical, you almost always want `nextProps.callback()` just on the off chance that the function DID change.
 
 ## Consider using helper functions that take `(currProps, nextProps)`
 

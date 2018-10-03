@@ -32,22 +32,9 @@ Also, more of a personal opinion, but I think the latter reads much clearer.
 
 Glance value of functions are important to allow quick grokking of code. Try to adhere to the following standards:
 
-`getFoo()` - returns some computed value
-`renderFoo()` - returns some JSX
-`handleFoo()` - class method to be passed to child as event handler
-`props.onFoo()` - prop that expects to receive an event handler
-`fetchFoo()` - thunks that handle network requests
+* `getFoo()` - returns some computed value
+* `renderFoo()` - returns some JSX
+* `handleFoo()` - class method to be passed to child as event handler
+* `props.onFoo()` - prop that expects to receive an event handler
+* `fetchFoo()` - thunks that handle network requests
 
-## Use getters
-
-`this.getName()` and `this.name` may seem roughly equal in terms of brevity, but the latter makes it explicitly clear that the function cannot take arguments. This improves glance value, and reduces the mental workload people have to do when reading code.
-
-```javascript
-getName() { /* return a string */ }
-
-get name() { /* return a string */ }
-```
-
-## Don't abuse getters
-
-It is easy to misread getters as class properties. Getter functions should not be expensive, as this can be a hard-to-trace source of bad performance. Alternatively, cache them with something like `lodash`.

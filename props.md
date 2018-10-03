@@ -1,6 +1,33 @@
 # Props
 
+## Avoid passing changing references as props
+
+**This is probably the single largest source of performance bottlenecks in React.**
+
+```jsx
+return (
+  <Foo foo={[]} bar={{}}/>
+);
+
+// in Foo componentWillReceiveProps()
+this.props.foo === nextProps.foo // false
+this.props.bar === nextProps.bar // false
+```
+
+New identities will be recognized as prop updates. Common cases where these arise:
+
+* Inline callbacks (e.g. `<Foo onClick={e => e.preventDefault()}/>`)
+  * **Fix**: Declare `handleClick` as a class method and pass `onClick={this.handleClick}`.
+* Redux form inline validation function arrays (e.g. `<Field validate={[required, lessThan(10)]}/>`)
+  * **Fix**: Declare `const validations = [...]` outside `render()` and pass that as the prop.
+* Inline styles (e.g. `<div style={{display: 'flex'}}/>`)
+  * **Fix**: Use CSS.
+* "Namespaced" props (e.g. `<Footer footerProps={{ save: {}, close: {} }}/>`)
+  * **Fix**: Memoize the creation of the `footerProps` object.
+
 ## Avoid declaring functions as props in `render()`
+
+A continuation of the previous issue.
 
 ```jsx
 return (
@@ -15,24 +42,6 @@ It is sometimes recommended to use arrow functions instead of class methods in c
 Besides in event handlers, a very common place this occurs is in refs. Most online examples demonstrate callback refs as follows: `ref={node => this.node = node}` This carries the same performance penalty.
 
 **Note**: In general, consider how many children a component will have in the DOM tree. The closer to being a leaf a component is, and the less expensive rendering is, the less important it is to optimize this rerender.
-
-## Avoid 'naked' arrays and objects as props in `render()`
-
-```jsx
-return (
-  <Foo foo={[]} bar={{}}/>
-);
-
-// in Foo componentWillReceiveProps()
-this.props.foo === nextProps.foo // false
-this.props.bar === nextProps.bar // false
-```
-
-New identities will be recognized as prop updates. Common cases where these arise:
-
-* Redux form inline validation function arrays
-* Inline styles
-* "Namespaced" props (e.g. `footerProps`)
 
 ## Use helper components to avoid arrow functions in `render()` as props when creating component instances interatively
 
@@ -73,7 +82,7 @@ The same note from above applies. Because this case takes comparatively more wor
 
 Because of how Javascript handles truthiness or falsiness, it can be less verbose to pass in props that will be used as booleans without coercing them.
 
-```javascript
+```jsx
 <Component hasValues={values.length}/>
 ```
 
