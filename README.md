@@ -14,6 +14,7 @@ Much of the material is biased by my opinion as I am currently the only contribu
 * [Components](./components.md)
 * [Class methods](./classMethods.md)
 * [Props](./props.md)
+* [`setState()`](./setState.md)
 * [`componentWillReceiveProps()`](./componentWillReceiveProps.md)
 * [Higher-order components (HOCs)](./hoc.md)
 
