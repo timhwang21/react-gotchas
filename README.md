@@ -25,6 +25,7 @@ Much of the material is biased by my opinion as I am currently the only contribu
 * [`mergeProps()`](./mergeProps.md)
 
 ### Libraries
+* [react-i18next](./react-i18next.md)
 * [Reselect](./reselect.md)
 * [Redux Form](./reduxForm.md)
 * [Redux Thunk](./reduxThunk.md)
