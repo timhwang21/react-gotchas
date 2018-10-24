@@ -14,10 +14,11 @@ Thus, the following are not equivalent, even though Prettier may silently format
   <1/> is ' unbolded '
   <2/> is <i>italicized</i>
  */
-<span>
-  <b>bold</b> unbolded <i>italicized</i>
-</span>
-
+<Trans>
+  <span>
+    <b>bold</b> unbolded <i>italicized</i>
+  </span>
+</Trans>
 /*
   <0/> is <b>bold</b>
   <1/> is ' '
@@ -25,9 +26,11 @@ Thus, the following are not equivalent, even though Prettier may silently format
   <3/> is ' '
   <4/> is <i>italicized</i>
  */
-<span>
-  <b>bold</b>
-  {' '}unbolded{' '}
-  <i>italicized</i>
-</span>
+<Trans>
+  <span>
+    <b>bold</b>
+    {' '}unbolded{' '}
+    <i>italicized</i>
+  </span>
+</Trans>
 ```
