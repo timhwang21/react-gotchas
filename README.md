@@ -19,6 +19,7 @@ This repository is meant to be a way to collaboratively track **gotchas** -- eas
 * [`mergeProps()`](./mergeProps.md)
 
 ### Libraries
+* [Enzyme](./enzyme.md)
 * [react-i18next](./react-i18next.md)
 * [Reselect](./reselect.md)
 * [Redux Form](./reduxForm.md)
